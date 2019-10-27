@@ -65,7 +65,11 @@ steps:
   displayName: 'Run unit tests - $(buildConfiguration)'
   inputs:
     command: 'test'
+<<<<<<< HEAD
     arguments: '--no-build --configuration $(buildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat="cobertura%2copencover" /p:CoverletOutput=$(Build.SourcesDirectory)/TestResults/Coverage/'
+=======
+    arguments: '--no-build --configuration $(buildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=$(Build.SourcesDirectory)/TestResults/Coverage/'
+>>>>>>> 670d54561a1c70898322abd8ec4bd8fe9ceb8a8b
     publishTestResults: true
     projects: '**/*.Tests.csproj'
 
@@ -73,12 +77,15 @@ steps:
     reportgenerator -reports:$(Build.SourcesDirectory)/**/coverage.cobertura.xml -targetdir:$(Build.SourcesDirectory)/CodeCoverage -reporttypes:HtmlInline_AzurePipelines
   displayName: 'Create code coverage report'
 
+<<<<<<< HEAD
 - task: SonarCloudAnalyze@1
   displayName: 'Run SonarCloud code analysis'
 
 - task: SonarCloudPublish@1
   displayName: 'Publish SonarCloud quality gate results'
 
+=======
+>>>>>>> 670d54561a1c70898322abd8ec4bd8fe9ceb8a8b
 - task: PublishCodeCoverageResults@1
   displayName: 'Publish code coverage report'
   inputs:
