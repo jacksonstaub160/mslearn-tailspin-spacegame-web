@@ -100,6 +100,16 @@ steps:
       eq(variables['System.PullRequest.TargetBranch'], 'master')
     )
 
+- task: WhiteSource Bolt@19
+  displayName: 'Run WhiteSource Bolt'
+  condition: | 
+  and 
+  ( 
+    succeeded(), 
+    eq(variables['Build.Reason'], 'PullRequest'), 
+    eq(variables['System.PullRequest.TargetBranch'],'master')
+  )
+
 - task: PublishCodeCoverageResults@1
   displayName: 'Publish code coverage report'
   inputs:
